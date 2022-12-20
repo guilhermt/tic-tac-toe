@@ -9,6 +9,7 @@ export class Game {
   };
   turn = 1;
   running = true;
+  games = 1
   status;
 
   makeMove(pos) {
@@ -68,8 +69,6 @@ export class Game {
       return;
     }
 
-    this.turn = 1;
-
     this.running = false;
 
     if (this.status === 1 || this.status === 2) {
@@ -80,6 +79,9 @@ export class Game {
       this.state.winner = this.turn;
       return;
     }
+
+    this.games++
+    this.turn = this.games % 2 ? 1 : 2
 
     setTimeout(() => {
       this.state.board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
